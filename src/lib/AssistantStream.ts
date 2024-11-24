@@ -143,7 +143,10 @@ export class AssistantStream
           }
           return new Promise<AssistantStreamEvent | undefined>((resolve, reject) =>
             readQueue.push({ resolve, reject }),
-          ).then((chunk) => (chunk ? { value: chunk, done: false } : { value: undefined, done: true }));
+          ).then(
+            (chunk): IteratorResult<AssistantStreamEvent> =>
+              chunk ? { value: chunk, done: false } : { value: undefined, done: true },
+          );
         }
         const chunk = pushQueue.shift()!;
         return { value: chunk, done: false };
@@ -691,7 +694,6 @@ export class AssistantStream
 
           const index = deltaEntry['index'];
           if (index == null) {
-            console.error(deltaEntry);
             throw new Error('Expected array delta entry to have an `index` property');
           }
 

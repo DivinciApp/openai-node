@@ -586,7 +586,10 @@ export class ChatCompletionStream<ParsedT = null>
           }
           return new Promise<ChatCompletionChunk | undefined>((resolve, reject) =>
             readQueue.push({ resolve, reject }),
-          ).then((chunk) => (chunk ? { value: chunk, done: false } : { value: undefined, done: true }));
+          ).then(
+            (chunk): IteratorResult<ChatCompletionChunk> =>
+              chunk ? { value: chunk, done: false } : { value: undefined, done: true },
+          );
         }
         const chunk = pushQueue.shift()!;
         return { value: chunk, done: false };

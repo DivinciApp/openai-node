@@ -119,7 +119,11 @@ export function maybeParseChatCompletion<
       ...completion,
       choices: completion.choices.map((choice) => ({
         ...choice,
-        message: { ...choice.message, parsed: null, tool_calls: choice.message.tool_calls ?? [] },
+        message: {
+          ...choice.message,
+          parsed: null as ParsedT | null,
+          tool_calls: choice.message.tool_calls ?? [],
+        },
       })),
     };
   }
