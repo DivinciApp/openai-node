@@ -13,7 +13,12 @@
       "openai/*": ["src/*"],
       "openai": ["src/index.ts"]
     },
-    "noEmit": true,
+
+    "outDir": "./dist", // Ensures emitted files go to the 'dist' directory
+    "declaration": true, // Generates .d.ts files for type declarations
+    "declarationMap": true, // Creates maps for easier debugging
+    "sourceMap": true, // Generates source maps for debugging
+    "removeComments": true, // Optionally remove comments in the emitted files
 
     "resolveJsonModule": true,
 
@@ -32,7 +37,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-		"isolatedModules": true,
+    "isolatedModules": true,
 
     "skipLibCheck": true
   }

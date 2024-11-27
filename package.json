@@ -9,7 +9,10 @@
   "repository": "github:openai/openai-node",
   "license": "Apache-2.0",
   "files": [
-    "**/*"
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "private": false,
   "scripts": {
@@ -17,7 +20,7 @@
     "build": "./scripts/build",
     "prepublishOnly": "echo 'to publish, run pnpm build && (cd dist; pnpm publish)' && exit 1",
     "format": "prettier --write --cache --cache-strategy metadata . !dist",
-    "prepare": "if ./scripts/utils/check-is-in-git-install.sh; then ./scripts/build; fi",
+    "prepare": "./scripts/build",
     "tsn": "ts-node -r tsconfig-paths/register",
     "lint": "./scripts/lint",
     "fix": "./scripts/format"
